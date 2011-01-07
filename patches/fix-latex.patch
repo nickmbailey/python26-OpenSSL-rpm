@@ -1,0 +1,56 @@
+--- a/doc/tools/texinputs/howto.cls	2010-11-01 21:49:55.000000000 +0000
++++ b/doc/tools/texinputs/howto.cls	2011-01-07 06:57:02.000000000 +0000
+@@ -35,6 +35,7 @@
+ % This should come last.  Do not change this.
+ %
+ \RequirePackage{python}
++\RequirePackage{ifpdf}
+ 
+ % support for module synopsis sections:
+ \newcommand{\py@ModSynopsisFilename}{\jobname.syn}
+@@ -49,7 +50,7 @@
+ %
+ \renewcommand{\maketitle}{
+   \py@doHorizontalRule
+-  \@ifundefined{pdfinfo}{}{{
++  \ifpdf
+     % This \def is required to deal with multi-line authors; it
+     % changes \\ to ', ' (comma-space), making it pass muster for
+     % generating document info in the PDF file.
+@@ -58,7 +59,7 @@
+       /Author (\@author)
+       /Title (\@title)
+     }
+-  }}
++  \fi
+   \begin{flushright}
+     {\rm\Huge\py@HeaderFamily \@title} \par
+     {\em\large\py@HeaderFamily \py@release} \par
+--- a/doc/tools/texinputs/manual.cls	2010-11-01 21:49:55.000000000 +0000
++++ b/doc/tools/texinputs/manual.cls	2011-01-07 06:57:44.000000000 +0000
+@@ -54,6 +54,7 @@
+   \py@OldChapter
+ }
+ 
++\RequirePackage{ifpdf}
+ 
+ % Change the title page to look a bit better, and fit in with the
+ % fncychap ``Bjarne'' style a bit better.
+@@ -63,7 +64,7 @@
+     \let\footnotesize\small
+     \let\footnoterule\relax
+     \py@doHorizontalRule%
+-    \@ifundefined{pdfinfo}{}{{
++    \ifpdf
+       % This \def is required to deal with multi-line authors; it
+       % changes \\ to ', ' (comma-space), making it pass muster for
+       % generating document info in the PDF file.
+@@ -72,7 +73,7 @@
+         /Author (\@author)
+         /Title (\@title)
+       }
+-    }}
++    \fi
+     \begin{flushright}%
+       {\rm\Huge\py@HeaderFamily \@title \par}%
+       {\em\LARGE\py@HeaderFamily \py@release \par}

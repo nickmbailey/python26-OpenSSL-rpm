@@ -1,0 +1,11 @@
+--- a/setup.py	2010-11-01 21:49:55.000000000 +0000
++++ b/setup.py	2011-01-07 07:10:43.000000000 +0000
+@@ -192,7 +192,7 @@
+                      include_dirs=IncludeDirs, library_dirs=LibraryDirs)
+ 
+ 
+-setup(name='pyOpenSSL', version=__version__,
++setup(name='python26-OpenSSL', version=__version__,
+       packages = ['OpenSSL'],
+       package_dir = {'OpenSSL': 'OpenSSL'},
+       ext_modules = [mkExtension('crypto'), mkExtension('rand'),
